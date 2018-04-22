@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover"/>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript" src="calendar_core.js"></script>
+    <script type="text/javascript" src="calendar.js"></script>
+    <link rel="stylesheet" type="text/css" href="calendar.css" />
+</head>
+
+<body>
+<div id="calendar"></div>
+
+<script>
+    var c = new Calender();
+    c.onSelected = function(y,m,d) {
+        console.log([y,m,d].join("-"));
+    }
+    c.onSetToday = function() {
+        console.log("setToday");
+    }
+    c.onClear = function() {
+        console.log("clear");
+    }
+    c.render("calendar");
+</script>
+
+
+    <br />
+    <br />
+    <br /> 开始时间
+    <input type="text" onfocus="calendar();" id="begin_time" />
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/> 结束时间
+
+    <input type="text" onfocus="calendar();" id="end_time" />
+</body>
+
+</html>

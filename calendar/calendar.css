@@ -1,0 +1,24 @@
+﻿.aspwebchh{ border:1px solid #00a0e9; font-size:12px; padding:3px; background:#fff; z-index: 999; display: block; width: 140px;position: relative; }
+.aspwebchh div,.aspwebchh ul,.aspwebchh li,.aspwebchh dl,.aspwebchh dd{ padding:0; margin:0; list-style-type:none;}
+.aspwebchh .aspwebchh_calendar{ width:100%;}
+.aspwebchh .calendar_tool{ width:140px; height:20px; padding-bottom:4px;}
+.aspwebchh .calendar_tool .calendar_month{ width:60px; float:left;}
+.aspwebchh .calendar_tool .calendar_month div{ width:90%;text-align:center; height:20px; line-height:20px; _margin-top:2px}
+.aspwebchh .calendar_tool .calendar_month div a{ width:100%; height:100%; text-decoration:none; color:#000; display:block;}
+.aspwebchh .calendar_tool .calendar_month div a:hover{ background:#00a0e9; color:#fff}
+.aspwebchh .calendar_tool .calendar_year{ float:left; width:80px;}
+.aspwebchh .calendar_tool .calendar_year .calendar_year_input{ width:52px; margin-left:3px; margin-right:3px; height:20px;}
+.aspwebchh .calendar_tool .calendar_year .calendar_year_left{ margin:0; padding: 0; font-weight: bold; font-family: '宋体'; width: 10px; height: 19px; line-height: 20px; cursor: pointer;  text-align: center; color: #fff; border: medium none; background:#00a0e9}
+.aspwebchh .calendar_tool .calendar_year .calendar_year_right{margin:0; padding: 0; font-weight: bold; font-family: '宋体'; width: 10px; height: 19px; line-height: 20px; cursor: pointer; text-align: center; color: #fff; border: medium none; background:#00a0e9}
+.aspwebchh .calendar_content{  width:140px;}
+.aspwebchh .calendar_action{ width:140px; height:20px; width:85px; position:absolute; right:0; bottom:3px}
+.aspwebchh .calendar_action input{height: 18px; width: 35px; line-height: 18px; padding: 0pt; text-align: center; border: medium none; color: rgb(255, 255, 255); display: block; float: left; font-size: 12px; cursor: pointer; margin-left: 4px; background:#00a0e9;}
+.aspwebchh ul{ width:140px; height: 20px; }
+.aspwebchh li{ width:20px; height:20px; float:left; color:#666; text-align:center; line-height:20px}
+.aspwebchh li.selected{ background:#00a0e9;}
+.aspwebchh li.selected a{ color:#fff;}
+.aspwebchh li a{ display:block; width:100%; height:100%; text-decoration:none; color:#666}
+.aspwebchh li.c a{ color:#00a0e9}
+.aspwebchh li a:hover{ background:#00a0e9; color:#fff}
+.aspwebchh dl{ background:#00a0e9; color:#fff; width:140px; height:20px; line-height:20px; margin-bottom:5px}
+.aspwebchh dl dd{ width:20px; height:20px; float:left;}
