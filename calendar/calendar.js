@@ -26,7 +26,7 @@
                 element.value = datestr;
                 this.hide();
             }
-            single.onToday = function() {
+            single.onSetToday = function() {
                 var now = new Date();
                 element.value = now.getFullYear() + '-' + ( now.getMonth() + 1 ) + '-' + now.getDate();
                 this.hide();
