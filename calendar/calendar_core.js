@@ -58,10 +58,14 @@
             return title + content;
 		}
 
+        var genCalanderElementID = function( id ) {
+            return calendarID + "_" + id;
+        }
+
         var getCalendarHtml = function() {
-            var html =  '    <div class="calendar_tool" id="'+ calendarID +'_tool">'+
+            var html =  '    <div class="calendar_tool" id="'+ genCalanderElementID("tool") +'">'+
                         '        <div class="calendar_month">'+
-                        '            <select id="'+ calendarID +'_month_select"><option value="0">1月</option>'+
+                        '            <select id="'+ genCalanderElementID("month_select") +'"><option value="0">1月</option>'+
                         '                <option value="1">2月</option>'+
                         '                <option value="2">3月</option>'+
                         '                <option value="3">4月</option>'+
@@ -75,17 +79,17 @@
                         '                <option value="11">12月</option></select>'+
                         '        </div>'+
                         '        <div class="calendar_year">'+
-                        '            <input type="button" value="&lt;" class="calendar_year_left" id="'+ calendarID +'_year_prev"><input'+
-                        '                type="text" class="calendar_year_input" id="'+ calendarID +'_year_input"><input type="button"'+
-                        '                value="&gt;" class="calendar_year_right" id="'+ calendarID +'_year_next">'+
+                        '            <input type="button" value="&lt;" class="calendar_year_left" id="'+ genCalanderElementID("year_prev") +'"><input'+
+                        '                type="text" class="calendar_year_input" id="'+ genCalanderElementID("year_input") +'"><input type="button"'+
+                        '                value="&gt;" class="calendar_year_right" id="'+ genCalanderElementID("year_next") +'">'+
                         '        </div>'+
                         '    </div>'; 
 
-            html += '<div class="calendar_content" id="'+ calendarID +'_date_list"></div>';
+            html += '<div class="calendar_content" id="'+ genCalanderElementID("date_list") +'"></div>';
 
             html += '<div class="calendar_action">' +
-                        '<input type="button" value="清空" id="'+ calendarID +'_clear">' +
-                        '<input type="button" value="今天" id="'+ calendarID +'_today">'+
+                        '<input type="button" value="清空" id="'+ genCalanderElementID("clear") +'">' +
+                        '<input type="button" value="今天" id="'+ genCalanderElementID("today") +'">'+
                     '</div>';
 
             return '<div class="calendar_body">' +  html + '</div>';
@@ -134,20 +138,7 @@
             } );           
         }
 
-        var initCalendar = function( y, m, d, placeholder ) {
-            calendarEl = document.createElement( 'div' );
-            calendarEl.id = calendarID;
-            calendarEl.className = 'aspwebchh';
-            calendarEl.innerHTML = getCalendarHtml();
-            
-            placeholder = placeholder ? document.getElementById( placeholder ) : document.body;
-            placeholder.appendChild( calendarEl );
-
-            refreshCalender( y, m, d );
-
-            monthChangeAction();
-            yearChangeAction();
-
+        var dateSelectedChangeAction = function() {
             addEventHandler( getElement( 'date_list' ), 'click', function( e ) {
                 e = e || window.event;
                 var t = e.target || e.srcElement;
@@ -174,7 +165,23 @@
                 if( typeof( self.onSetToday ) == 'function' ) {
                     self.onSetToday();
                 }
-            } );            
+            } ); 
+        }
+
+        var initCalendar = function( placeholder ) {
+            calendarEl = document.createElement( 'div' );
+            calendarEl.id = calendarID;
+            calendarEl.className = 'aspwebchh';
+            calendarEl.innerHTML = getCalendarHtml();
+            
+            placeholder = placeholder ? document.getElementById( placeholder ) : document.body;
+            placeholder.appendChild( calendarEl );
+
+            refreshCalender(selectedYear, selectedMonth, selectedDate);
+
+            monthChangeAction();
+            yearChangeAction();
+            dateSelectedChangeAction();
         }
 
         var refreshCalender = function( y, m, d ) {
@@ -206,7 +213,7 @@
             selectedYear = now.getFullYear();
             selectedMonth = now.getMonth();
             selectedDate = now.getDate();
-            initCalendar( selectedYear, selectedMonth, selectedDate, placeholder );
+            initCalendar( placeholder );
         }
 
         this.hide = function() {
