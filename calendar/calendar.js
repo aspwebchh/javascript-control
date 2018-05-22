@@ -2,13 +2,20 @@
     var single;
     var element;
 
-    function calendar() {
-        var e = calendar.caller.arguments[0] || window.event;
-        element = e.target || e.srcElement; 
-        var offset = getOffset( element );
+    function closeHandler( e ) {
+        e = e || window.event;
+        var t = e.target || e.srcElement;
+        if( single.contains( t ) ) {
+            return;
+        }
+        if( t == element ) {
+            return;
+        }
+        single.hide();
+    }
+    
 
-        removeEventHandler( document.documentElement, 'click', closeHandler );
-
+    function checkElementValue() {
         if( !element.checkDateAction ) {
             addEventHandler( element, 'blur', function() {
                 if( this.value != '' && this.value != undefined && !checkDate( this.value ) ) {
@@ -18,7 +25,9 @@
             } );
             element.checkDateAction = true;
         }
+    }
 
+    function renderCalendar() {
         if( !single ) {
             single = new Calender();
             single.onSelected = function( y, m, d ) {
@@ -37,7 +46,11 @@
             }
             single.render();
         }
+        var offset = getOffset( element );
+        single.position( offset.left, offset.top + element.offsetHeight );
+    }
 
+    function initCalendarSelectedValue() {
         var date = element.value;
         if( checkDate( date ) ) {
             var date    = date.replace(/\-|\/|\./g,"/");
@@ -47,22 +60,18 @@
             var d    = parseInt(ymd[2]);
             single.setDate( y, m, d );
         }
+    }
 
-        single.position( offset.left, offset.top + element.offsetHeight );
+    function calendar() {
+        var e = calendar.caller.arguments[0] || window.event;
+        element = e.target || e.srcElement; 
+       
+        removeEventHandler( document.documentElement, 'click', closeHandler );
+        checkElementValue();
+        renderCalendar();
+        initCalendarSelectedValue();
         addEventHandler( document.documentElement, 'click', closeHandler );
     }
 
-    function closeHandler( e ) {
-        e = e || window.event;
-        var t = e.target || e.srcElement;
-        if( single.contains( t ) ) {
-            return;
-        }
-        if( t == element ) {
-            return;
-        }
-        single.hide();
-    }
-    
     window.calendar = calendar;
 })();
