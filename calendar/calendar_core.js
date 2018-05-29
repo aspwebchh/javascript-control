@@ -103,7 +103,7 @@
             var monthSelect = getElement( 'month_select' );
             var yearInput = getElement( 'year_input' );
             
-            addEventHandler( monthSelect, 'click', function() {
+            addEventHandler( monthSelect, 'change', function() {
                 var month = this.value;
                 var year = yearInput.value;
                 getElement( 'date_list' ).innerHTML = getContentHtml( year, month );
